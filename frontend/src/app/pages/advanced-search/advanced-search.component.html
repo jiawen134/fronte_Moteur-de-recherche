@@ -1,0 +1,27 @@
+<div class="advanced-search">
+  <h1>Recherche avancée (RegEx)</h1>
+  <p class="subtitle">
+    Saisissez une expression régulière. La recherche peut s'effectuer dans la table d'index (rapide)
+    ou dans le contenu textuel complet (plus lent).
+  </p>
+
+  <form class="search-form" (ngSubmit)="onSearch()">
+    <input
+      type="text"
+      [(ngModel)]="regex"
+      name="regex"
+      placeholder="Ex: ^[Aa]dventure.*|love|chapitre\s+\d+"
+      class="search-input"
+    />
+    <div class="options">
+      <label>
+        <input type="checkbox" [(ngModel)]="searchInIndex" name="searchInIndex" />
+        Rechercher dans l'index (recommandé)
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary">Rechercher</button>
+  </form>
+  <p class="error" *ngIf="error">{{ error }}</p>
+
+  <a routerLink="/" class="link-back">Retour à l'accueil</a>
+</div>

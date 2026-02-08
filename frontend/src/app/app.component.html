@@ -1,0 +1,56 @@
+<div class="app-layout">
+  <!-- Sidebar gauche -->
+  <aside class="sidebar">
+    <a routerLink="/" class="logo">
+      <span class="logo-icon">📚</span>
+      <span class="logo-text">Bibliothèque</span>
+    </a>
+    <nav class="nav">
+      <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" class="nav-item">
+        <span class="nav-icon">◇</span>
+        <span>Découvrir</span>
+      </a>
+      <a routerLink="/recherche-avancee" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">◈</span>
+        <span>Catégories</span>
+      </a>
+      <a href="#" class="nav-item"><span class="nav-icon">▤</span><span>Ma bibliothèque</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">↓</span><span>Téléchargements</span></a>
+      <a href="#" class="nav-item"><span class="nav-icon">♥</span><span>Favoris</span></a>
+    
+    </nav>
+  </aside>
+
+  <!-- Zone centrale -->
+  <div class="main-wrapper">
+    <header class="top-bar">
+      <form class="search-form" (ngSubmit)="onSearch()">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          [(ngModel)]="keyword"
+          name="keyword"
+          placeholder="Recherchez vos livres préférés..."
+          class="search-input"
+        />
+      </form>
+      <div class="top-bar-right">
+        <span class="user-badge">👤</span>
+        <span class="lang">Français</span>
+      </div>
+    </header>
+    <div class="content">
+      <router-outlet />
+    </div>
+  </div>
+
+  <!-- Panneau droit (détail livre) -->
+  <aside class="right-panel">
+    <div class="panel-placeholder" *ngIf="!selectedBook">
+      <p>Sélectionnez un livre pour voir les détails</p>
+    </div>
+    <div class="panel-book" *ngIf="selectedBook">
+      <!-- Rempli dynamiquement si besoin -->
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,48 @@
+<div class="results">
+  <header class="results-header">
+    <h1>Résultats</h1>
+    <p class="query" *ngIf="query">
+      <span class="label">{{ type === 'regex' ? 'RegEx' : 'Mot-clé' }} :</span>
+      <code>{{ query }}</code>
+    </p>
+    <div class="toolbar" *ngIf="!loading && documents.length > 0">
+      <label>
+        Trier par :
+        <select [ngModel]="sortBy" (ngModelChange)="sortBy = $event; onSortChange()">
+          <option *ngFor="let opt of sortOptions" [value]="opt.value">{{ opt.label }}</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <p class="loading" *ngIf="loading">Recherche en cours...</p>
+  <p class="error" *ngIf="error && !loading">{{ error }}</p>
+
+  <section class="documents" *ngIf="!loading && documents.length > 0">
+    <p class="total">{{ totalCount }} document(s) trouvé(s).</p>
+    <ul class="doc-list">
+      <li *ngFor="let doc of documents" class="doc-card">
+        <h3 class="doc-title">{{ doc.title }}</h3>
+        <p class="doc-meta" *ngIf="doc.author">Auteur : {{ doc.author }}</p>
+        <p class="doc-meta" *ngIf="doc.occurrenceCount != null">
+          Occurrences : {{ doc.occurrenceCount }}
+        </p>
+        <p class="doc-meta" *ngIf="doc.centralityScore != null">
+          Score centralité : {{ doc.centralityScore | number:'1.2-4' }}
+        </p>
+        <p class="doc-snippet" *ngIf="doc.snippet">{{ doc.snippet }}</p>
+      </li>
+    </ul>
+  </section>
+
+  <p class="no-results" *ngIf="!loading && !error && query && documents.length === 0">
+    Aucun document trouvé pour cette requête.
+  </p>
+
+  <app-suggestion-block
+    [suggestions]="suggestions"
+    [strategy]="suggestionsStrategy"
+  />
+
+  <a routerLink="/" class="link-back">Nouvelle recherche</a>
+</div>

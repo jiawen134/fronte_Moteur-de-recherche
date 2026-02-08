@@ -1,0 +1,10 @@
+<section class="suggestions" *ngIf="suggestions.length > 0">
+  <h2>Suggestions</h2>
+  <p class="strategy" *ngIf="strategy">Stratégie : {{ strategy }}</p>
+  <ul class="suggestion-list">
+    <li *ngFor="let doc of suggestions" class="suggestion-item">
+      <span class="suggestion-title">{{ doc.title }}</span>
+      <span class="suggestion-meta" *ngIf="doc.author">{{ doc.author }}</span>
+    </li>
+  </ul>
+</section>

@@ -1,0 +1,104 @@
+.results {
+  max-width: 720px;
+  margin: 0;
+}
+
+.results-header {
+  margin-bottom: 1.5rem;
+}
+
+.results-header h1 {
+  font-size: 1.5rem;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.query {
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.query code {
+  background: var(--color-bg-alt);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+}
+
+.toolbar {
+  margin-top: 0.75rem;
+}
+
+.toolbar select {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+  color: var(--color-text);
+  margin-left: 0.5rem;
+}
+
+.loading, .error {
+  margin: 1rem 0;
+}
+
+.error {
+  color: var(--color-error);
+}
+
+.documents .total {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.doc-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.doc-card {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: var(--shadow);
+}
+
+.doc-title {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem 0;
+  color: var(--color-text);
+}
+
+.doc-meta {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin: 0.25rem 0;
+}
+
+.doc-snippet {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  margin: 0.5rem 0 0 0;
+  line-height: 1.4;
+}
+
+.no-results {
+  color: var(--color-text-muted);
+  margin: 1rem 0;
+}
+
+.link-back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.link-back:hover {
+  text-decoration: underline;
+}

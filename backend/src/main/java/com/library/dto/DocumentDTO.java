@@ -13,6 +13,8 @@ public class DocumentDTO {
     private String snippet;
     private Integer wordCount;
     private String category;
+    private String content;  // 完整内容，用于阅读
+
     
     public DocumentDTO() {}
     
@@ -46,4 +48,7 @@ public class DocumentDTO {
     
     public String getCategory() { return category; }
     public void setCategory(String category) { this.category = category; }
+    
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
 }

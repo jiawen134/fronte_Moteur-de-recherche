@@ -179,6 +179,18 @@
     box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
 }
 
+.btn-read {
+    background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+    color: white;
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-read:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(16, 185, 129, 0.5);
+}
+
+
 .btn-secondary {
     background: var(--color-bg-glass);
     color: var(--color-text);

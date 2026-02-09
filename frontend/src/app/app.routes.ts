@@ -5,6 +5,7 @@ import { ResultsComponent } from './pages/results/results.component';
 import { MyLibraryComponent } from './pages/my-library/my-library.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { DownloadsComponent } from './pages/downloads/downloads.component';
+import { ReaderComponent } from './pages/reader/reader.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'ma-bibliotheque', component: MyLibraryComponent },
   { path: 'favoris', component: FavoritesComponent },
   { path: 'telechargements', component: DownloadsComponent },
+  { path: 'lire/:id', component: ReaderComponent },
   { path: '**', redirectTo: '' }
 ];

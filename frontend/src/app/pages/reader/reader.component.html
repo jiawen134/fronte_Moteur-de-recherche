@@ -1,0 +1,48 @@
+<div class="reader" *ngIf="!loading && book">
+    <!-- 顶部工具栏 -->
+    <header class="reader-header">
+        <button class="back-btn" (click)="goBack()">← Retour</button>
+        <div class="book-info">
+            <h1 class="book-title">{{ book.title }}</h1>
+            <p class="book-author" *ngIf="book.author">par {{ book.author }}</p>
+        </div>
+        <div class="controls">
+            <button class="control-btn" (click)="decreaseFontSize()" title="Diminuer la taille">A-</button>
+            <span class="font-size">{{ fontSize }}px</span>
+            <button class="control-btn" (click)="increaseFontSize()" title="Augmenter la taille">A+</button>
+        </div>
+    </header>
+
+    <!-- 内容区域 -->
+    <main class="reader-content" [style.fontSize.px]="fontSize">
+        <article class="book-content">
+            <p *ngFor="let paragraph of (book.content || '').split('\n\n')">
+                {{ paragraph }}
+            </p>
+            <div class="no-content" *ngIf="!book.content">
+                <p>Le contenu de ce livre n'est pas disponible pour la lecture.</p>
+                <p class="hint">Ceci est une version de démonstration. Le texte complet serait disponible dans une
+                    version de production.</p>
+            </div>
+        </article>
+    </main>
+
+    <!-- 底部信息 -->
+    <footer class="reader-footer">
+        <span class="word-count" *ngIf="book.wordCount">{{ book.wordCount | number }} mots</span>
+        <span class="category" *ngIf="book.category">{{ book.category }}</span>
+    </footer>
+</div>
+
+<!-- 加载状态 -->
+<div class="loading" *ngIf="loading">
+    <span class="spinner"></span>
+    <p>Chargement du livre...</p>
+</div>
+
+<!-- 错误状态 -->
+<div class="error-state" *ngIf="!loading && error">
+    <span class="error-icon">📖</span>
+    <p>{{ error }}</p>
+    <a routerLink="/" class="btn btn-primary">Retour à l'accueil</a>
+</div>

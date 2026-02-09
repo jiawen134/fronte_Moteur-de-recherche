@@ -276,10 +276,12 @@ public class SearchServiceImpl implements SearchService {
             .map(doc -> {
                 DocumentDTO dto = toDTO(doc);
                 dto.setCentralityScore(pageRankScores.getOrDefault(id, 0.0));
+                dto.setContent(doc.getContent());  // 包含完整内容用于阅读
                 return dto;
             })
             .orElse(null);
     }
+
     
     private DocumentDTO toDTO(Document doc) {
         DocumentDTO dto = new DocumentDTO();

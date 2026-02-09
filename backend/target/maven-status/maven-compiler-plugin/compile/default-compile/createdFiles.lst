@@ -1,0 +1,10 @@
+com/library/model/Document.class
+com/library/LibraryApplication.class
+com/library/dto/DocumentDTO.class
+com/library/service/SearchService.class
+com/library/dto/SearchResponse.class
+com/library/controller/SearchController.class
+com/library/repository/DocumentRepository.class
+com/library/dto/SuggestionResponse.class
+com/library/service/impl/SearchServiceImpl.class
+com/library/config/CorsConfig.class

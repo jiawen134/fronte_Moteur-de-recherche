@@ -13,4 +13,9 @@ export interface DocumentResult {
   snippet?: string;
   /** Nombre de mots dans le document. */
   wordCount?: number;
+  /** Catégorie du document. */
+  category?: string;
+  /** Contenu complet du document (pour la lecture). */
+  content?: string;
 }
+

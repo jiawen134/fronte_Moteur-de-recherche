@@ -8,6 +8,8 @@ import {
   AdvancedSearchParams
 } from '../models/search.model';
 import { SuggestionResponse } from '../models/suggestion.model';
+import { DocumentResult } from '../models/document.model';
+
 
 /**
  * Service d'appel API vers le backend Java (recherche, recherche avancée, suggestions).
@@ -17,7 +19,7 @@ import { SuggestionResponse } from '../models/suggestion.model';
 export class SearchService {
   private readonly apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   /**
    * Recherche par mot-clé (fonctionnalité explicite).
@@ -57,4 +59,12 @@ export class SearchService {
     if (lastQuery) params = params.set('query', lastQuery);
     return this.http.get<SuggestionResponse>(`${this.apiUrl}/suggestions`, { params });
   }
+
+  /**
+   * Récupère un document par son ID (pour la lecture).
+   */
+  getDocument(id: string): Observable<DocumentResult> {
+    return this.http.get<DocumentResult>(`${this.apiUrl}/documents/${id}`);
+  }
 }
+

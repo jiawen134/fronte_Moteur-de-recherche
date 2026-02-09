@@ -1,0 +1,50 @@
+<div class="book-detail" *ngIf="book">
+    <button class="close-btn" (click)="onClose()" aria-label="Fermer">×</button>
+
+    <div class="book-cover-large">
+        <span class="cover-emoji">📖</span>
+    </div>
+
+    <div class="book-info">
+        <h2 class="book-title">{{ book.title }}</h2>
+        <p class="book-author" *ngIf="book.author">
+            <span class="label">Auteur</span>
+            {{ book.author }}
+        </p>
+
+        <div class="book-stats">
+            <div class="stat" *ngIf="book.wordCount">
+                <span class="stat-value">{{ book.wordCount | number }}</span>
+                <span class="stat-label">mots</span>
+            </div>
+            <div class="stat" *ngIf="book.occurrenceCount">
+                <span class="stat-value">{{ book.occurrenceCount }}</span>
+                <span class="stat-label">occurrences</span>
+            </div>
+            <div class="stat" *ngIf="book.centralityScore">
+                <span class="stat-value">{{ book.centralityScore | number:'1.2-4' }}</span>
+                <span class="stat-label">score</span>
+            </div>
+        </div>
+
+        <p class="book-snippet" *ngIf="book.snippet">
+            {{ book.snippet }}
+        </p>
+    </div>
+
+    <div class="actions">
+        <button class="btn btn-primary" (click)="onAddToFavorites()">
+            <span class="btn-icon">♥</span>
+            Ajouter aux favoris
+        </button>
+        <button class="btn btn-secondary" (click)="onDownload()">
+            <span class="btn-icon">↓</span>
+            Télécharger
+        </button>
+    </div>
+</div>
+
+<div class="empty-state" *ngIf="!book">
+    <span class="empty-icon">📚</span>
+    <p>Sélectionnez un livre pour voir les détails</p>
+</div>

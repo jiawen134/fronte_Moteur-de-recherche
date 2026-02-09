@@ -1,0 +1,36 @@
+<div class="favorites">
+    <header class="page-header">
+        <h1>♥ Favoris</h1>
+        <p class="subtitle">Vos livres préférés, sauvegardés pour plus tard</p>
+    </header>
+
+    <section class="section" *ngIf="favorites.length > 0">
+        <div class="section-header">
+            <h2>Mes favoris</h2>
+            <span class="count">{{ favorites.length }} livre(s)</span>
+        </div>
+        <div class="favorites-list">
+            <div class="favorite-card" *ngFor="let book of favorites">
+                <div class="book-cover">{{ book.emoji }}</div>
+                <div class="book-info">
+                    <h3 class="book-title">{{ book.title }}</h3>
+                    <p class="book-author">{{ book.author }}</p>
+                    <p class="added-date">Ajouté le {{ book.addedDate }}</p>
+                </div>
+                <div class="actions">
+                    <button class="btn-action read">Lire</button>
+                    <button class="btn-action remove" (click)="removeFromFavorites(book.id)">
+                        <span class="icon">×</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="empty-state" *ngIf="favorites.length === 0">
+        <span class="empty-icon">♥</span>
+        <p>Aucun favori pour le moment</p>
+        <p class="hint">Ajoutez des livres à vos favoris pour les retrouver facilement</p>
+        <a routerLink="/" class="btn btn-primary">Découvrir des livres</a>
+    </div>
+</div>

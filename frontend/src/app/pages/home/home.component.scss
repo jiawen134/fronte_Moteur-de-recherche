@@ -1,74 +1,121 @@
+/* Home Page - 现代化首页样式 */
+
 .home {
   max-width: 100%;
+  animation: fadeIn 0.5s ease;
 }
 
+/* 区块 */
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .section-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .section-header h2 {
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: var(--color-text);
   margin: 0;
+  position: relative;
+}
+
+.section-header h2::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: 2px;
 }
 
 .see-all {
   color: var(--color-text-muted);
   text-decoration: none;
   font-size: 0.9rem;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
 }
 
 .see-all:hover {
   color: var(--color-primary);
+  background: var(--color-primary-light);
 }
 
 .notif-icon {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   cursor: pointer;
+  transition: transform var(--transition-fast);
+  position: relative;
 }
 
+.notif-icon:hover {
+  transform: scale(1.15);
+}
+
+.notif-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+/* 分类标签 */
 .category-tabs {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.25rem;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
 }
 
 .tab {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 999px;
-  background: var(--color-bg-alt);
+  padding: 0.6rem 1.25rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-glass);
   color: var(--color-text-muted);
   font-size: 0.9rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s;
+  transition: all var(--transition-normal);
+  backdrop-filter: blur(10px);
 }
 
 .tab:hover {
-  background: var(--color-border);
+  border-color: var(--color-primary);
   color: var(--color-text);
+  background: var(--color-primary-light);
 }
 
 .tab.active {
-  background: var(--color-primary);
-  color: #fff;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
 }
 
+/* 书籍滚动区域 */
 .book-scroll {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
   overflow-x: auto;
-  padding-bottom: 0.5rem;
-  scroll-snap-type: x proximity;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
 .book-scroll::-webkit-scrollbar {
@@ -81,54 +128,171 @@
 }
 
 .book-scroll::-webkit-scrollbar-thumb {
-  background: var(--color-border);
+  background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-secondary) 100%);
   border-radius: 3px;
 }
 
+/* 书籍卡片 */
 .book-card {
-  flex: 0 0 140px;
+  flex: 0 0 160px;
   scroll-snap-align: start;
   cursor: pointer;
-  transition: transform 0.15s;
+  transition: all var(--transition-normal);
+  animation: slideIn 0.5s ease backwards;
+}
+
+.book-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.book-card:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.book-card:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.book-card:nth-child(4) {
+  animation-delay: 0.25s;
+}
+
+.book-card:nth-child(5) {
+  animation-delay: 0.3s;
 }
 
 .book-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-8px);
 }
 
+.book-card:hover .book-cover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 40px rgba(99, 102, 241, 0.2);
+}
+
+/* 书籍封面 */
 .book-cover {
-  width: 140px;
-  height: 200px;
-  background: linear-gradient(135deg, var(--color-primary-light) 0%, #e0e7ff 100%);
-  border-radius: var(--radius-sm);
+  width: 160px;
+  height: 220px;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 4rem;
+  margin-bottom: 0.75rem;
+  position: relative;
+  overflow: hidden;
+  transition: all var(--transition-normal);
   box-shadow: var(--shadow-md);
-  margin-bottom: 0.5rem;
 }
 
+/* 渐变封面背景 */
+.book-card:nth-child(1) .book-cover {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.book-card:nth-child(2) .book-cover {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.book-card:nth-child(3) .book-cover {
+  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+.book-card:nth-child(4) .book-cover {
+  background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+.book-card:nth-child(5) .book-cover {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.book-card:nth-child(6) .book-cover {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.book-cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.book-card:hover .book-cover::before {
+  left: 100%;
+}
+
+/* 书籍标题 */
 .book-title {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
-  margin: 0 0 0.2rem 0;
-  line-height: 1.3;
+  margin: 0 0 0.3rem 0;
+  line-height: 1.4;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
+/* 书籍作者 */
 .book-author {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--color-text-muted);
   margin: 0;
 }
 
+/* 错误信息 */
 .error {
   color: var(--color-error);
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  margin-top: 1.5rem;
   font-size: 0.9rem;
-  margin-top: 1rem;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 3rem;
+  color: var(--color-text-muted);
+}
+
+.empty-state::before {
+  content: '📚';
+  font-size: 3rem;
+  display: block;
+  margin-bottom: 1rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .book-card {
+    flex: 0 0 140px;
+  }
+
+  .book-cover {
+    width: 140px;
+    height: 190px;
+    font-size: 3rem;
+  }
+
+  .section-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .category-tabs {
+    gap: 0.4rem;
+  }
+
+  .tab {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+  }
 }

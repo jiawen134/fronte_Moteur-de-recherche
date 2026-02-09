@@ -1,0 +1,57 @@
+<div class="downloads">
+    <header class="page-header">
+        <h1>↓ Téléchargements</h1>
+        <p class="subtitle">Gérez vos livres téléchargés pour la lecture hors ligne</p>
+    </header>
+
+    <section class="section" *ngIf="downloads.length > 0">
+        <div class="section-header">
+            <h2>Tous les téléchargements</h2>
+            <span class="count">{{ downloads.length }} fichier(s)</span>
+        </div>
+        <div class="downloads-list">
+            <div class="download-card" *ngFor="let item of downloads"
+                [class.downloading]="item.status === 'downloading'">
+                <div class="book-cover">{{ item.emoji }}</div>
+                <div class="download-info">
+                    <h3 class="book-title">{{ item.title }}</h3>
+                    <p class="book-author">{{ item.author }}</p>
+                    <div class="meta">
+                        <span class="size">{{ item.size }}</span>
+                        <span class="status" [class.completed]="item.status === 'completed'">
+                            {{ getStatusLabel(item.status) }}
+                        </span>
+                    </div>
+                    <div class="progress-bar" *ngIf="item.status === 'downloading'">
+                        <div class="progress-fill" [style.width.%]="item.progress"></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <button class="btn-action open" *ngIf="item.status === 'completed'">Ouvrir</button>
+                    <button class="btn-action pause" *ngIf="item.status === 'downloading'">Pause</button>
+                    <button class="btn-action remove" (click)="removeDownload(item.id)">
+                        <span class="icon">🗑</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="empty-state" *ngIf="downloads.length === 0">
+        <span class="empty-icon">↓</span>
+        <p>Aucun téléchargement</p>
+        <p class="hint">Téléchargez des livres pour les lire hors ligne</p>
+        <a routerLink="/" class="btn btn-primary">Découvrir des livres</a>
+    </div>
+
+    <!-- 存储信息 -->
+    <div class="storage-info" *ngIf="downloads.length > 0">
+        <div class="storage-header">
+            <span class="label">Espace utilisé</span>
+            <span class="value">19.5 MB / 500 MB</span>
+        </div>
+        <div class="storage-bar">
+            <div class="storage-fill" style="width: 4%"></div>
+        </div>
+    </div>
+</div>

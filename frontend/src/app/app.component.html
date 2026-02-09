@@ -12,12 +12,20 @@
       </a>
       <a routerLink="/recherche-avancee" routerLinkActive="active" class="nav-item">
         <span class="nav-icon">◈</span>
-        <span>Catégories</span>
+        <span>Recherche avancée</span>
       </a>
-      <a href="#" class="nav-item"><span class="nav-icon">▤</span><span>Ma bibliothèque</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">↓</span><span>Téléchargements</span></a>
-      <a href="#" class="nav-item"><span class="nav-icon">♥</span><span>Favoris</span></a>
-    
+      <a routerLink="/ma-bibliotheque" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">▤</span>
+        <span>Ma bibliothèque</span>
+      </a>
+      <a routerLink="/telechargements" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">↓</span>
+        <span>Téléchargements</span>
+      </a>
+      <a routerLink="/favoris" routerLinkActive="active" class="nav-item">
+        <span class="nav-icon">♥</span>
+        <span>Favoris</span>
+      </a>
     </nav>
   </aside>
 
@@ -26,13 +34,8 @@
     <header class="top-bar">
       <form class="search-form" (ngSubmit)="onSearch()">
         <span class="search-icon">🔍</span>
-        <input
-          type="text"
-          [(ngModel)]="keyword"
-          name="keyword"
-          placeholder="Recherchez vos livres préférés..."
-          class="search-input"
-        />
+        <input type="text" [(ngModel)]="keyword" name="keyword" placeholder="Recherchez vos livres préférés..."
+          class="search-input" />
       </form>
       <div class="top-bar-right">
         <span class="user-badge">👤</span>
@@ -46,11 +49,10 @@
 
   <!-- Panneau droit (détail livre) -->
   <aside class="right-panel">
+    <app-book-detail *ngIf="selectedBook" [book]="selectedBook" (close)="selectedBook = null"
+      (addToFavorites)="onAddToFavorites($event)" (download)="onDownload($event)"></app-book-detail>
     <div class="panel-placeholder" *ngIf="!selectedBook">
       <p>Sélectionnez un livre pour voir les détails</p>
-    </div>
-    <div class="panel-book" *ngIf="selectedBook">
-      <!-- Rempli dynamiquement si besoin -->
     </div>
   </aside>
 </div>

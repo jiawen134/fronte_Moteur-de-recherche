@@ -6,8 +6,8 @@
       <a routerLink="/resultats" [queryParams]="{ q: 'recent', type: 'keyword' }" class="see-all">Voir tout →</a>
     </div>
     <div class="book-scroll">
-      <div class="book-card" *ngFor="let book of recommended">
-        <div class="book-cover">{{ book.emoji }}</div>
+      <div class="book-card" *ngFor="let book of recommended" (click)="onBookClick(book)">
+        <div class="book-cover">📖</div>
         <h3 class="book-title">{{ book.title }}</h3>
         <p class="book-author">{{ book.author }}</p>
       </div>
@@ -21,19 +21,14 @@
       <span class="notif-icon">🔔</span>
     </div>
     <div class="category-tabs">
-      <button
-        *ngFor="let cat of categories"
-        type="button"
-        class="tab"
-        [class.active]="selectedCategory === cat.id"
-        (click)="selectedCategory = cat.id"
-      >
+      <button *ngFor="let cat of categories" type="button" class="tab" [class.active]="selectedCategory === cat.id"
+        (click)="selectedCategory = cat.id">
         {{ cat.label }}
       </button>
     </div>
     <div class="book-scroll">
-      <div class="book-card" *ngFor="let book of categoryBooks">
-        <div class="book-cover">{{ book.emoji }}</div>
+      <div class="book-card" *ngFor="let book of categoryBooks" (click)="onBookClick(book)">
+        <div class="book-cover">📚</div>
         <h3 class="book-title">{{ book.title }}</h3>
         <p class="book-author">{{ book.author }}</p>
       </div>

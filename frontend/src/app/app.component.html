@@ -49,10 +49,10 @@
 
   <!-- Panneau droit (détail livre) -->
   <aside class="right-panel">
-    <app-book-detail *ngIf="selectedBook" [book]="selectedBook" (close)="selectedBook = null"
+    <app-book-detail *ngIf="selectedBook" [book]="selectedBook" (close)="onClosePanel()"
       (addToFavorites)="onAddToFavorites($event)" (download)="onDownload($event)"></app-book-detail>
     <div class="panel-placeholder" *ngIf="!selectedBook">
-      <p>Sélectionnez un livre pour voir les détails</p>
+      <p>Cliquez sur un livre pour voir les détails</p>
     </div>
   </aside>
 </div>

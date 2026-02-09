@@ -1,0 +1,18 @@
+#!/bin/sh
+# Maven Wrapper script
+
+# 下载 Maven 如果不存在
+MAVEN_HOME="$HOME/.m2/wrapper/apache-maven-3.9.6"
+if [ ! -d "$MAVEN_HOME" ]; then
+    echo "正在下载 Maven..."
+    mkdir -p "$HOME/.m2/wrapper"
+    cd "$HOME/.m2/wrapper"
+    wget -q https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -O maven.tar.gz 2>/dev/null || \
+    curl -sL https://dlcdn.apache.org/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz -o maven.tar.gz
+    tar -xzf maven.tar.gz
+    rm maven.tar.gz
+    cd -
+fi
+
+export PATH="$MAVEN_HOME/bin:$PATH"
+exec mvn "$@"

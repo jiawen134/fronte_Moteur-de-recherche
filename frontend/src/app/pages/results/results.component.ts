@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { SearchService } from '../../core/services/search.service';
+import { BookSelectionService } from '../../core/services/book-selection.service';
 import { DocumentResult } from '../../core/models/document.model';
 import { SearchResponse } from '../../core/models/search.model';
 import { SuggestionResponse } from '../../core/models/suggestion.model';
@@ -35,8 +36,9 @@ export class ResultsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private searchService: SearchService
-  ) {}
+    private searchService: SearchService,
+    private bookSelectionService: BookSelectionService
+  ) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
@@ -68,7 +70,7 @@ export class ResultsComponent implements OnInit {
             this.loading = false;
           },
           error: err => {
-            this.error = err?.error?.message || 'Erreur lors de la recherche.';
+            this.error = err?.error?.message || 'Erreur lors de la recherche. Vérifiez que le backend est démarré sur http://localhost:8080';
             this.loading = false;
           }
         });
@@ -86,7 +88,7 @@ export class ResultsComponent implements OnInit {
             this.loading = false;
           },
           error: err => {
-            this.error = err?.error?.message || 'Erreur lors de la recherche avancée.';
+            this.error = err?.error?.message || 'Erreur lors de la recherche avancée. Vérifiez que le backend est démarré.';
             this.loading = false;
           }
         });
@@ -99,7 +101,7 @@ export class ResultsComponent implements OnInit {
         this.suggestions = res.suggestions || [];
         this.suggestionsStrategy = res.strategy || '';
       },
-      error: () => {}
+      error: () => { }
     });
   }
 
@@ -110,5 +112,9 @@ export class ResultsComponent implements OnInit {
       queryParamsHandling: 'merge'
     });
     this.runSearch();
+  }
+
+  onDocumentClick(doc: DocumentResult): void {
+    this.bookSelectionService.selectBook(doc);
   }
 }

@@ -21,7 +21,7 @@
   <section class="documents" *ngIf="!loading && documents.length > 0">
     <p class="total">{{ totalCount }} document(s) trouvé(s).</p>
     <ul class="doc-list">
-      <li *ngFor="let doc of documents" class="doc-card">
+      <li *ngFor="let doc of documents" class="doc-card" (click)="onDocumentClick(doc)">
         <h3 class="doc-title">{{ doc.title }}</h3>
         <p class="doc-meta" *ngIf="doc.author">Auteur : {{ doc.author }}</p>
         <p class="doc-meta" *ngIf="doc.occurrenceCount != null">
@@ -39,10 +39,7 @@
     Aucun document trouvé pour cette requête.
   </p>
 
-  <app-suggestion-block
-    [suggestions]="suggestions"
-    [strategy]="suggestionsStrategy"
-  />
+  <app-suggestion-block [suggestions]="suggestions" [strategy]="suggestionsStrategy" />
 
   <a routerLink="/" class="link-back">Nouvelle recherche</a>
 </div>

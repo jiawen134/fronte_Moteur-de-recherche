@@ -1,0 +1,10 @@
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/service/SearchService.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/repository/DocumentRepository.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/dto/DocumentDTO.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/service/impl/SearchServiceImpl.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/model/Document.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/config/CorsConfig.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/dto/SearchResponse.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/LibraryApplication.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/controller/SearchController.java
+/home/zhang/fronte_Moteur-de-recherche/backend/src/main/java/com/library/dto/SuggestionResponse.java
